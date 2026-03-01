@@ -25,6 +25,9 @@ body {
   overflow-x: hidden;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Base Gradient Background Setup */
@@ -580,6 +583,7 @@ footer {
   text-align: center;
   border-top: 1px solid var(--glass-border);
   background: rgba(0, 0, 0, 0.1);
+  margin-top: auto;
 }
 
 .footer-logo {
