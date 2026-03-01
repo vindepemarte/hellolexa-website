@@ -1146,7 +1146,8 @@ html {
     align-items: center;
     gap: 0.5rem;
     background: linear-gradient(135deg, var(--pri-gradient-start), var(--pri-gradient-end));
-    color: white;
+    color: white !important;
+    text-decoration: none !important;
     padding: 1rem 2.5rem;
     border-radius: 3rem;
     font-size: 1.1rem;
