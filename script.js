@@ -22,6 +22,63 @@ window.addEventListener('scroll', () => {
     }
 });
 
+// Email capture form handling
+const emailForm = document.getElementById('email-form');
+const formMessage = document.getElementById('form-message');
+
+if (emailForm) {
+    emailForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const emailInput = document.getElementById('email-input');
+        const submitBtn = emailForm.querySelector('button[type="submit"]');
+        const email = emailInput.value.trim();
+        
+        if (!email) return;
+        
+        // Disable form during submission
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Subscribing...';
+        formMessage.textContent = '';
+        formMessage.className = 'form-message';
+        
+        try {
+            const response = await fetch('https://app.hellolexa.space/api/leads', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ 
+                    email, 
+                    source: 'hellolexa_landing' 
+                }),
+            });
+            
+            const data = await response.json();
+            
+            if (response.ok) {
+                if (data.alreadyExists) {
+                    formMessage.textContent = "You're already on the list! 📧";
+                    formMessage.className = 'form-message exists';
+                } else {
+                    formMessage.textContent = "You're in! Check your inbox 🎉";
+                    formMessage.className = 'form-message success';
+                    emailInput.value = '';
+                }
+            } else {
+                throw new Error(data.error || 'Something went wrong');
+            }
+        } catch (error) {
+            console.error('Email capture error:', error);
+            formMessage.textContent = 'Oops! Please try again.';
+            formMessage.className = 'form-message error';
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Subscribe';
+        }
+    });
+}
+
 // Intersection Observer for scroll animations
 const observerOptions = {
     root: null,

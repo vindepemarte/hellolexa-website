@@ -608,6 +608,59 @@ nav.scrolled {
   line-height: 1.6;
 }
 
+/* Email Capture Form */
+.email-form {
+  display: flex;
+  gap: 0.75rem;
+  max-width: 450px;
+  margin: 0 auto 1rem;
+}
+
+.email-form input[type="email"] {
+  flex: 1;
+  padding: 14px 20px;
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.email-form input[type="email"]::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.email-form input[type="email"]:focus {
+  border-color: var(--pri-gradient-start);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.2);
+}
+
+.email-form button {
+  padding: 14px 28px;
+  white-space: nowrap;
+}
+
+.form-message {
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  min-height: 1.5rem;
+}
+
+.form-message.success {
+  color: #22c55e;
+}
+
+.form-message.error {
+  color: #ef4444;
+}
+
+.form-message.exists {
+  color: #f59e0b;
+}
+
 /* Footer */
 footer {
   padding: 5rem 5% 3rem;
@@ -684,6 +737,14 @@ footer {
 
   .pricing-card.featured:hover {
     transform: translateY(-10px);
+  }
+
+  .email-form {
+    flex-direction: column;
+  }
+
+  .email-form button {
+    width: 100%;
   }
 }
 
